@@ -21,4 +21,4 @@ chmod +x setup_xfce.sh
 sudo ./setup_xfce.sh
 ```
 
-*(Note: Run this script **before** starting your first RDP session so XFCE doesn't overwrite the applied configuration files).*
+*(Note: Run this script **before** starting your first session so XFCE doesn't overwrite the applied configuration files).*
