@@ -40,6 +40,8 @@ fi
 echo "[4/5] Applying XFCE4 configuration for user: $TARGET_USER..."
 if [ -d "$SCRIPT_DIR/config/xfce4" ]; then
     mkdir -p "$TARGET_HOME/.config"
+    pkill -9 -u "$TARGET_USER" xfconfd 2>/dev/null || true
+    pkill -9 -u "$TARGET_USER" xfce4-panel 2>/dev/null || true
     rm -rf "$TARGET_HOME/.config/xfce4"
     cp -r "$SCRIPT_DIR/config/xfce4" "$TARGET_HOME/.config/"
     
