@@ -1,22 +1,23 @@
 #!/bin/bash
 set -e
 
-# Detect the actual user who invoked sudo (fallback to current user if run directly)
+# Detect the actual user who invoked sudo
 TARGET_USER="${SUDO_USER:-$USER}"
 TARGET_HOME=$(eval echo "~$TARGET_USER")
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 if [ "$TARGET_USER" = "root" ]; then
     echo "Error: Please run this script as a regular user with sudo (e.g., sudo ./setup_xfce.sh), not directly as root."
     exit 1
 fi
 
-echo "[1/5] Installing XFCE4 Minimal"
+echo "[1/5] Installing XFCE4, Xorg, LightDM and dependencies..."
 export DEBIAN_FRONTEND=noninteractive
 apt update
 
 apt install -y --no-install-recommends \
-    xfce4 xfce4-terminal xorg lightdm lightdm-gtk-greeter dbus-x11 -y
+    xfce4 xfce4-terminal xorg lightdm lightdm-gtk-greeter dbus-x11 \
+    software-properties-common gpg-agent
 
 echo "[2/5] Installing Firefox (.deb from official Mozilla PPA)..."
 add-apt-repository -y ppa:mozillateam/ppa
@@ -32,6 +33,8 @@ mkdir -p /usr/share/backgrounds/xfce
 if [ -d "$SCRIPT_DIR/wallpapers" ]; then
     cp -f "$SCRIPT_DIR/wallpapers/"* /usr/share/backgrounds/xfce/
     chmod 644 /usr/share/backgrounds/xfce/*
+else
+    echo "WARNING: $SCRIPT_DIR/wallpapers not found! Skipping wallpapers."
 fi
 
 echo "[4/5] Applying XFCE4 configuration for user: $TARGET_USER..."
@@ -45,6 +48,9 @@ if [ -d "$SCRIPT_DIR/config/xfce4" ]; then
     
     # Fix ownership so the user can modify settings inside the GUI session
     chown -R "$TARGET_USER:$TARGET_USER" "$TARGET_HOME/.config"
+    echo "XFCE4 configuration successfully applied."
+else
+    echo "WARNING: $SCRIPT_DIR/config/xfce4 not found! Skipping config copy."
 fi
 
 echo "[5/5] Configuring /etc/xrdp/startwm.sh for clean single-click logout..."
@@ -55,4 +61,4 @@ if [ -f /etc/xrdp/startwm.sh ]; then
     fi
 fi
 
-echo "=== SUCCESS! XFCE4 Minimal & custom configs applied for $TARGET_USER ==="
+echo "=== SUCCESS! XFCE4 & custom configs applied for $TARGET_USER ==="
