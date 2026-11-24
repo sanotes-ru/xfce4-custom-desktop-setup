@@ -1,4 +1,4 @@
-Automated post-installation script to deploy a lightweight **XFCE4 Minimal** desktop environment, **Firefox (.deb)**, custom wallpapers, and pre-configured clean panel/desktop layouts on **Ubuntu 24.04 LTS**.
+Automated post-installation script to deploy a lightweight **XFCE4 Minimal** desktop environment, **Firefox (.deb)**, custom wallpapers, and pre-configured clean panel/desktop layouts on **Ubuntu 20.XX Server**.
 
 Designed to work seamlessly alongside [xrdp-modern-lvgl-installer](https://github.com) for **any non-root user**.
 
