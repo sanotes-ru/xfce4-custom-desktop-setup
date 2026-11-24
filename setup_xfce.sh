@@ -11,7 +11,7 @@ if [ "$TARGET_USER" = "root" ]; then
     exit 1
 fi
 
-echo "[1/5] Installing XFCE4 Minimal, File Manager (Thunar) and Archive tools..."
+echo "[1/5] Installing XFCE4 Minimal"
 export DEBIAN_FRONTEND=noninteractive
 apt update
 
