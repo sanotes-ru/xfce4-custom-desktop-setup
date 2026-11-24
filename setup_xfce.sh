@@ -48,10 +48,20 @@ if [ -d "$SCRIPT_DIR/config/xfce4" ]; then
     # Replace any hardcoded user paths inside XML configs with the target user's home directory
     find "$TARGET_HOME/.config/xfce4" -type f -name "*.xml" -exec sed -i "s|/home/[^/]*/|$TARGET_HOME/|g" {} +
     
-    # Fix ownership so the user can modify settings inside the GUI session
+  # Fix ownership so the user can modify settings inside the GUI session
     chown -R "$TARGET_USER:$TARGET_USER" "$TARGET_HOME/.config"
     echo "XFCE4 configuration successfully applied."
 else
+    echo "WARNING: $SCRIPT_DIR/config/xfce4 not found! Skipping config copy."
+fi
+
+# Deploy desktop shortcuts (e.g., Firefox)
+if [ -d "$SCRIPT_DIR/desktop_icons" ]; then
+    mkdir -p "$TARGET_HOME/Desktop"
+    cp -f "$SCRIPT_DIR/desktop_icons/"*.desktop "$TARGET_HOME/Desktop/"
+    chmod +x "$TARGET_HOME/Desktop/"*.desktop
+    chown -R "$TARGET_USER:$TARGET_USER" "$TARGET_HOME/Desktop"
+fi
     echo "WARNING: $SCRIPT_DIR/config/xfce4 not found! Skipping config copy."
 fi
 
