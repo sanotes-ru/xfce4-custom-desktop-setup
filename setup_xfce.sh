@@ -16,7 +16,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt update
 
 apt install -y --no-install-recommends \
-    xfce4 xfce4-terminal xorg lightdm lightdm-gtk-greeter dbus-x11 \
+    xfce4 xfce4-terminal xfce4-xkb-plugin xorg lightdm lightdm-gtk-greeter dbus-x11 \
     software-properties-common gpg-agent
 
 echo "[2/5] Installing Firefox (.deb from official Mozilla PPA)..."
