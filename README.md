@@ -21,7 +21,7 @@ xfce4-custom-desktop-setup/
 3. **Deploys System Wallpapers:** Copies images from `wallpapers/` into `/usr/share/backgrounds/xfce/` so they are globally accessible across all users.
 4. **Applies Pre-configured Desktop & Shortcuts:**
    - Safely stops running `xfconfd` and `xfce4-panel` processes for the target user so cached settings do not overwrite new files.
-   - Copies `config/xfce4` into `~/.config/xfce4`, removes `.gitkeep` placeholders, and dynamically adapts any hardcoded home directory paths to the target user.
+   - Copies `config/xfce4` into `~/.config/xfce4`.
    - Copies `.desktop` files from `desktop_icons/` into `~/Desktop` and marks them executable (`chmod +x`).
 5. **Configures RDP-Safe Keyboard Switching (`us,ru`):** Creates `~/.config/autostart/xkb-layout.desktop` to apply `us,ru` layouts with `Ctrl + Shift` toggling after a 2-second delay (preventing `xrdp` from overriding XKB settings during initial connection).
 6. **Configures `xrdp` Session Startup:** Updates `/etc/xrdp/startwm.sh` with `exec dbus-run-session -- startxfce4` so logging out of XFCE closes the RDP session cleanly on the first click.
