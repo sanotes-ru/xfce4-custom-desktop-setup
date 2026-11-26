@@ -14,7 +14,6 @@ fi
 echo "[1/5] Installing XFCE4, Xorg, LightDM and dependencies..."
 export DEBIAN_FRONTEND=noninteractive
 apt update
-
 apt install -y --no-install-recommends \
     xfce4 xfce4-terminal xfce4-xkb-plugin xorg lightdm lightdm-gtk-greeter dbus-x11 \
     software-properties-common gpg-agent
