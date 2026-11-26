@@ -1,7 +1,5 @@
 Automated post-installation script to deploy a lightweight **XFCE4 Minimal** desktop environment, **Xorg**, **LightDM**, **Firefox (.deb)**, custom wallpapers, desktop shortcuts, and pre-configured panel/keyboard layouts on **Ubuntu 20.xx LTS**.
 
-Designed to work seamlessly alongside [xrdp-modern-lvgl-installer](https://github.com) for **any non-root user**.
-
 ## Repository Structure
 
 ```text
